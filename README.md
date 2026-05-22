@@ -1,6 +1,6 @@
 # aura-adaptive-urban-resilience-architecture
 
-The Adaptive Urban Resilience Architecture (AURA) project repository with the PoC for the "Distributed adaptive facade control for passive urban ventilation and thermal regulation" part
+The Adaptive Urban Resilience Architecture (AURA) project repository with the PoC for the "Distributed adaptive facade control for passive urban ventilation and thermal regulation" part.
 
 ## PoC Demo Commands
 
@@ -11,7 +11,7 @@ cd aura
 source .venv/bin/activate
 ```
 
-### Step 1 PoC
+### PoC run
 
 Rectangular building + wind from the left + tunnel-effect focused visualization.
 
@@ -23,34 +23,6 @@ Output figure:
 
 ```text
 data/08_reporting/viz_step1_effects.png
-```
-
-### Step 2 PoC
-
-Adds indoor airflow and thermal coupling.
-
-```bash
-kedro run --pipeline step2_poc --env step2
-```
-
-Output figure:
-
-```text
-data/08_reporting/viz_step2_thermal.png
-```
-
-### Step 3 PoC
-
-Static facade strategy with flow + thermal outcome.
-
-```bash
-kedro run --pipeline step3_poc --env step3
-```
-
-Output figure:
-
-```text
-data/08_reporting/viz_step3_facade.png
 ```
 
 ### Full Integrated Run
@@ -72,10 +44,8 @@ data/08_reporting/viz_step3_facade.png
 
 ### Quick Runtime Commands (Laptop-Friendly)
 
-Use reduced timesteps for fast demos.
+Use reduced timesteps for a fast demo.
 
 ```bash
 kedro run --pipeline step1_poc --env step1 --params="simulation.steps=70,external_cfd.lbm.steps=70"
-kedro run --pipeline step2_poc --env step2 --params="simulation.steps=70,simulation.internal_steps=60,simulation.thermal_steps=60,external_cfd.lbm.steps=70"
-kedro run --pipeline step3_poc --env step3 --params="simulation.steps=70,simulation.internal_steps=60,simulation.thermal_steps=60,external_cfd.lbm.steps=70"
 ```
