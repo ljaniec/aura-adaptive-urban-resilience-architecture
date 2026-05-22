@@ -1,0 +1,34 @@
+simulation:
+  dt: 0.01
+  steps: 500
+  internal_steps: 220
+  thermal_steps: 260
+
+domain:
+  nx: 360
+  ny: 140
+  dx: 0.2
+  dy: 0.2
+
+wind:
+  mode: urban_canyon_profile
+  velocity_mean: 0.09
+  gust_strength: 0.02
+  direction_deg: 0.0
+  turbulence_intensity: 0.02
+  seed: 123
+
+building:
+  width_cells: 74
+  height_cells: 64
+  x_center_ratio: 0.44
+  y_center_ratio: 0.5
+
+external_cfd:
+  solver: lbm_d2q9
+  lbm:
+    tau: 0.58
+    rho0: 1.0
+    max_velocity: 0.15
+    panel_permeability: 0.22
+    steps: 500

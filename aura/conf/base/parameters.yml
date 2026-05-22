@@ -1,0 +1,74 @@
+simulation:
+  dt: 0.01
+  steps: 120
+  internal_steps: 80
+  thermal_steps: 80
+
+domain:
+  nx: 180
+  ny: 100
+  dx: 0.2
+  dy: 0.2
+
+wind:
+  mode: sinusoidal
+  velocity_mean: 5.0
+  gust_strength: 1.2
+  direction_deg: 0.0
+  turbulence_intensity: 0.05
+  seed: 123
+
+building:
+  width_cells: 36
+  height_cells: 56
+  x_center_ratio: 0.5
+  y_center_ratio: 0.5
+  on_ground: true
+  ground_cells: 2
+
+facade:
+  num_panels: 20
+  angle_min: -45.0
+  angle_max: 45.0
+  opening_min: 0.1
+  opening_max: 1.0
+
+fluid:
+  rho: 1.225
+  mu: 1.81e-5
+
+external_cfd:
+  solver: lbm_d2q9
+  lbm:
+    tau: 0.58
+    rho0: 1.0
+    max_velocity: 0.16
+    panel_permeability: 0.25
+
+thermal:
+  alpha: 2.1e-5
+  initial_indoor_temp: 308.0
+  outdoor_temp: 295.0
+  buoyancy_beta: 0.0034
+  gravity: 9.81
+
+controllers:
+  mode: rule_based
+  wind_direction_override_deg: 0.0
+  static:
+    fixed_angle: 0.0
+    fixed_opening: 0.35
+
+metrics:
+  target_indoor_temp: 297.0
+  weights:
+    indoor_temperature_error: 1.0
+    drag_force: 0.2
+    vortex_intensity: 0.3
+    pedestrian_discomfort: 0.4
+    energy_cost: 0.1
+
+optimization:
+  algorithm: random_search
+  iterations: 20
+  seed: 7

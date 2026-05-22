@@ -39,58 +39,90 @@
 # (transcoding), templating and a way to reuse arguments that are frequently repeated. See more here:
 # https://docs.kedro.org/en/stable/data/data_catalog.html
 
-companies:
-  type: pandas.CSVDataset
-  filepath: data/01_raw/companies.csv
 
-reviews:
-  type: pandas.CSVDataset
-  filepath: data/01_raw/reviews.csv
-
-shuttles:
-  type: pandas.ExcelDataset
-  filepath: data/01_raw/shuttles.xlsx
-  load_args:
-    engine: openpyxl
-
-preprocessed_companies:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/preprocessed_companies.parquet
-
-preprocessed_shuttles:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/preprocessed_shuttles.parquet
-
-model_input_table:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/model_input_table.parquet
-
-regressor:
+wind_inlet:
   type: pickle.PickleDataset
-  filepath: data/06_models/regressor.pickle
-  versioned: true
+  filepath: data/04_feature/wind_inlet.pkl
 
-shuttle_passenger_capacity_plot_exp:
-  type: plotly.PlotlyDataset
-  filepath: data/08_reporting/shuttle_passenger_capacity_plot_exp.json
-  versioned: true
-  plotly_args:
-    type: bar
-    fig:
-      x: shuttle_type
-      y: passenger_capacity
-      orientation: h
-    layout:
-      xaxis_title: Shuttles
-      yaxis_title: Average passenger capacity
-      title: Shuttle Passenger capacity
+external_flow_state:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/external_flow_state.pkl
 
-shuttle_passenger_capacity_plot_go:
-  type: plotly.JSONDataset
-  filepath: data/08_reporting/shuttle_passenger_capacity_plot_go.json
-  versioned: true
+facade_state:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/facade_state.pkl
 
-dummy_confusion_matrix:
+indoor_flow_state:
+  type: pickle.PickleDataset
+  filepath: data/06_models/indoor_flow_state.pkl
+
+thermal_state:
+  type: pickle.PickleDataset
+  filepath: data/06_models/thermal_state.pkl
+
+simulation_metrics:
+  type: pickle.PickleDataset
+  filepath: data/07_model_output/simulation_metrics.pkl
+
+optimization_result:
+  type: pickle.PickleDataset
+  filepath: data/07_model_output/optimization_result.pkl
+
+simulation_summary:
+  type: pickle.PickleDataset
+  filepath: data/08_reporting/simulation_summary.pkl
+
+viz_wind_inlet:
   type: matplotlib.MatplotlibDataset
-  filepath: data/08_reporting/dummy_confusion_matrix.png
+  filepath: data/08_reporting/viz_wind_inlet.png
+  versioned: true
+
+viz_external_flow:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_external_flow.png
+  versioned: true
+
+viz_facade_state:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_facade_state.png
+  versioned: true
+
+viz_indoor_flow:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_indoor_flow.png
+  versioned: true
+
+viz_thermal_state:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_thermal_state.png
+  versioned: true
+
+viz_metrics:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_metrics.png
+  versioned: true
+
+viz_optimization:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_optimization.png
+  versioned: true
+
+viz_dashboard:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_dashboard.png
+  versioned: true
+
+viz_step1_effects:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_step1_effects.png
+  versioned: true
+
+viz_step2_thermal:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_step2_thermal.png
+  versioned: true
+
+viz_step3_facade:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/viz_step3_facade.png
   versioned: true
